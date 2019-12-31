@@ -1,4 +1,14 @@
 package com.codegym.repositories;
 
-public interface CustomerRepositoryi {
+import com.codegym.models.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Iterable<Customer> findAllByFirstName(String firstName);
 }
