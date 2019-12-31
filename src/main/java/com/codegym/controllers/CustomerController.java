@@ -58,4 +58,14 @@ public class CustomerController {
 
         return new ResponseEntity <>( currentCustomer, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/admin/customer/{id}", method = RequestMethod.DELETE)
+    ResponseEntity<Customer> removeCustomer(@PathVariable ("id") Long id){
+        Optional<Customer> customer = customerService.findById(id);
+        if(!customer.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        customerService.remove(id);
+        return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
+    }
 }
